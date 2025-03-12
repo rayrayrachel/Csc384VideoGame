@@ -1,43 +1,57 @@
 using UnityEngine;
 
-public class playerController : MonoBehaviour
+public class PlayerController : MonoBehaviour
 {
-
     private Animator animator;
     private Rigidbody2D rb;
-    private float moveInput;
+    private float moveInputX;
+    private float moveInputY;
 
-    public float moveSpeed = 5f;
+    public float walkSpeed = 3f;
+    public float runSpeed = 6f;
+    private float moveSpeed;
+    private bool isRunning = false;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
+        moveSpeed = walkSpeed;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        moveInput = Input.GetAxisRaw("Horizontal");
-        rb.linearVelocity = new Vector2(moveInput * moveSpeed, rb.linearVelocity.y);
+        moveInputX = Input.GetAxisRaw("Horizontal");  
+        moveInputY = Input.GetAxisRaw("Vertical");  
 
-        if (moveInput != 0)
+        Vector2 moveDirection = new Vector2(moveInputX, moveInputY).normalized;
+        rb.linearVelocity = moveDirection * moveSpeed;
+
+        // Toggle Run
+        if ((Input.GetKeyDown(KeyCode.LeftShift) || Input.GetKeyDown(KeyCode.RightShift)) && moveDirection.magnitude > 0)
         {
-            animator.SetBool("isRunning", true);
+            isRunning = true;
+            moveSpeed = runSpeed;
+        }
+
+        // Set animation
+        if (moveDirection.magnitude > 0)
+        {
+            animator.SetBool("isWalking", !isRunning);
+            animator.SetBool("isRunning", isRunning);
         }
         else
         {
+            animator.SetBool("isWalking", false);
             animator.SetBool("isRunning", false);
+            isRunning = false;
+            moveSpeed = walkSpeed;
         }
 
-        // Flip
-        if (moveInput > 0)
-            transform.localScale = new Vector3(1, 1, 1); 
-        else if (moveInput < 0)
-            transform.localScale = new Vector3(-1, 1, 1); 
-
-        //test commit
-
+        // Flip 
+        if (moveInputX > 0)
+            transform.localScale = new Vector3(1, 1, 1);
+        else if (moveInputX < 0)
+            transform.localScale = new Vector3(-1, 1, 1);
     }
 }
