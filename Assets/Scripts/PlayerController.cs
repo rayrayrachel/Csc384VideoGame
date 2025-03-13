@@ -21,12 +21,17 @@ public class PlayerController : MonoBehaviour
     private bool isFired = false;
     private bool isFiring = false;
 
+    public AudioClip shotgunSound; 
+    private AudioSource audioSource;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         moveSpeed = walkSpeed;
+        audioSource = GetComponent<AudioSource>();  
+
     }
 
     // Update is called once per frame
@@ -95,6 +100,9 @@ public class PlayerController : MonoBehaviour
 
         animator.SetBool("isFired", true); 
         isFired = true;
+
+        PlayerAudioController.Instance.PlaySound(shotgunSound);
+
 
         StartCoroutine(ResetFiringState());
     }
