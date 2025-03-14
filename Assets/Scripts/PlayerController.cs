@@ -8,7 +8,7 @@ public class PlayerController : MonoBehaviour
     private float moveInputX;
     private float moveInputY;
 
-    public float walkSpeed = 3f;
+    public float walkSpeed = 2f;
     public float runSpeed = 6f;
     private float moveSpeed;
     private bool isRunning = false;
