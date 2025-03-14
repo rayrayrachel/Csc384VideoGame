@@ -886,7 +886,7 @@ BoxCollider2D:
   m_UsedByEffector: 0
   m_CompositeOperation: 0
   m_CompositeOrder: 0
-  m_Offset: {x: 0.17004395, y: -0.92022705}
+  m_Offset: {x: 0.17004395, y: -0.5591736}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0}
@@ -896,7 +896,7 @@ BoxCollider2D:
     drawMode: 0
     adaptiveTiling: 0
   m_AutoTiling: 0
-  m_Size: {x: 1.3400879, y: 2.840454}
+  m_Size: {x: 1.3400879, y: 2.1183472}
   m_EdgeRadius: 0
 --- !u!1 &60547748
 GameObject:
@@ -1005,7 +1005,7 @@ Transform:
   m_GameObject: {fileID: 60547748}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 1.26, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1417,7 +1417,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 6.962068
+  orthographic size: 3.84
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -1442,7 +1442,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 258, y: 304, z: -10}
+  m_LocalPosition: {x: 518, y: 308.26, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1515,7 +1515,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 50, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 50, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &531915882
@@ -1782,7 +1782,7 @@ TilemapRenderer:
   m_SortingLayer: 2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0.26785713, y: 0.46428573, z: 0}
+  m_ChunkCullingBounds: {x: 0.26785713, y: 1.0475845, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 3
@@ -4976,7 +4976,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 34
-    OrthographicSize: 6.962068
+    OrthographicSize: 3.84
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -5003,7 +5003,7 @@ Transform:
   m_GameObject: {fileID: 1063263308}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 258, y: 304, z: -10}
+  m_LocalPosition: {x: 518, y: 308.26, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -6305,7 +6305,7 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 11400000, guid: 8356b5633159c28468557dce4ce89531, type: 2}
   - m_RefCount: 1
-    m_Data: {fileID: 11400000, guid: 6ca3b2684e3a4c34f96d0707a18ad289, type: 2}
+    m_Data: {fileID: 11400000, guid: 1e1a66f9ce21c2449a3fc7ba924088e8, type: 2}
   - m_RefCount: 3
     m_Data: {fileID: 11400000, guid: 2f32fe1a5445d6a45807914b00f5be5a, type: 2}
   - m_RefCount: 3
@@ -6426,7 +6426,7 @@ Tilemap:
   - m_RefCount: 1
     m_Data: {fileID: 730878472, guid: cf4aee8b2046f4d40a5a682103082121, type: 3}
   - m_RefCount: 1
-    m_Data: {fileID: -978240136, guid: cf4aee8b2046f4d40a5a682103082121, type: 3}
+    m_Data: {fileID: -1477509724, guid: cf4aee8b2046f4d40a5a682103082121, type: 3}
   - m_RefCount: 3
     m_Data: {fileID: -1546533017, guid: cf4aee8b2046f4d40a5a682103082121, type: 3}
   - m_RefCount: 3
