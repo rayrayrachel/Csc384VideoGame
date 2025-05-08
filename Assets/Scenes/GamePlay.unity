@@ -1023,11 +1023,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 821668315aefebd4cac7dafdea33f0e3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  walkSpeed: 3
+  walkSpeed: 2
   runSpeed: 6
-  bulletPrefab: {fileID: 0}
-  firePoint: {fileID: 0}
-  bulletSpeed: 10
   shotgunSound: {fileID: 8300000, guid: 44aa3a4e97ee1af40a6b871a2351585f, type: 3}
 --- !u!50 &60547753
 Rigidbody2D:
@@ -1417,7 +1414,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 3.84
+  orthographic size: 4.05
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -3096,7 +3093,7 @@ CompositeCollider2D:
   m_ColliderPaths:
   - m_Collider: {fileID: 679116885}
     m_ColliderPaths:
-    - - X: 0
+    - - X: 149563
         Y: 22500000
       - X: 70250000
         Y: 22500000
@@ -3106,22 +3103,22 @@ CompositeCollider2D:
         Y: 70250000
       - X: -70250000
         Y: 22500000
-      - X: -10000000
+      - X: -9850436
         Y: 22500000
-      - X: -10000000
-        Y: 15357143
-      - X: 0
-        Y: 15357143
+      - X: -9850436
+        Y: 21190130
+      - X: 149563
+        Y: 21190130
   m_CompositePaths:
     m_Paths:
-    - - {x: -0.000029300001, y: 1.5357143}
-      - {x: 0.0000294, y: 2.25}
+    - - {x: 0.014927, y: 2.119013}
+      - {x: 0.0149857, y: 2.25}
       - {x: 7.025, y: 2.2500293}
       - {x: 7.0249705, y: 7.025}
       - {x: -7.025, y: 7.0249705}
       - {x: -7.0249705, y: 2.25}
-      - {x: -1, y: 2.2499707}
-      - {x: -0.99997073, y: 1.5357143}
+      - {x: -0.9850436, y: 2.2499707}
+      - {x: -0.9850143, y: 2.119013}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
   m_UseDelaunayMesh: 0
@@ -4976,7 +4973,7 @@ MonoBehaviour:
     CustomLookAtTarget: 0
   Lens:
     FieldOfView: 34
-    OrthographicSize: 3.84
+    OrthographicSize: 4.05
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0

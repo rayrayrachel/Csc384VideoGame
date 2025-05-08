@@ -18,9 +18,9 @@ public class Interactionontroller : MonoBehaviour
     public float fadeDuration = 2f;
     private bool isPlayerInRange = false;
 
-#if UNITY_EDITOR
-    public SceneAsset sceneToLoad; // Drag and drop scene in Inspector
-#endif
+    #if UNITY_EDITOR
+    public SceneAsset sceneToLoad; 
+    #endif
     private string sceneName;
     private bool isChangingScene = false;
 
@@ -29,10 +29,10 @@ public class Interactionontroller : MonoBehaviour
     {
         SetAlpha(0f);
 
-#if UNITY_EDITOR
+        #if UNITY_EDITOR
         if (sceneToLoad != null)
-            sceneName = sceneToLoad.name; 
-#endif
+        sceneName = sceneToLoad.name; 
+        #endif
     }
 
     // Update is called once per frame
