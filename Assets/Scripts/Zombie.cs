@@ -132,8 +132,14 @@ public class Zombie : MonsterController
             MonsterAudioController.Instance.PlaySound(deathSound);
         }
 
+        if (Mplayer != null)
+        {
+            Mplayer.AddKill();
+        }
 
         yield return new WaitForSeconds(5f); 
+
+
 
         Destroy(gameObject);
 

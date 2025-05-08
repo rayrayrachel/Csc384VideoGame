@@ -2,6 +2,9 @@ using UnityEngine;
 
 public abstract class MonsterController : MonoBehaviour
 {
+
+public PlayerController Mplayer;
+
     public float speed = 1f;
     protected Transform player;
     protected Animator animator;
@@ -36,7 +39,10 @@ public abstract class MonsterController : MonoBehaviour
         {
             animator.SetTrigger("Die");
         }
-
+        if (Mplayer != null)
+        {
+            Mplayer.AddKill();
+        }
         Destroy(gameObject, 1f); 
     }
 }

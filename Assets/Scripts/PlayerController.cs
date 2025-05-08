@@ -1,5 +1,8 @@
 using UnityEngine;
-using System.Collections;  
+using System.Collections;
+using UnityEngine.UI;
+using static System.Net.Mime.MediaTypeNames;
+using TMPro;
 
 public class PlayerController : MonoBehaviour
 {
@@ -17,24 +20,39 @@ public class PlayerController : MonoBehaviour
     private bool isFired = false;
     private bool isFiring = false;
 
+
+    //Audio
     public AudioClip shotgunSound;
     public AudioClip hitSound;
     public AudioClip deathSound;
 
-
     private AudioSource audioSource;
 
-
+    //UI
     public GameObject arrow;
 
     public GameObject bulletPrefab;
     public float bulletSpeed = 40f;
 
-    public int damage = 1;
+    public TextMeshProUGUI noBulletText;
+    public TextMeshProUGUI saltShotsText;
 
+    public UnityEngine.UI.Image[] heartImages;
+
+
+    //PlayerProfile
+    public int damage = 1;
     public int maxHealth = 5;
     private int currentHealth;
     private bool isDead = false;
+
+    //Inventory
+    public int saltShots = 10;
+
+    //Score
+    public int killCount = 0;
+    public TextMeshProUGUI killCountText;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -43,7 +61,7 @@ public class PlayerController : MonoBehaviour
         animator = GetComponent<Animator>();
         rb = GetComponent<Rigidbody2D>();
         moveSpeed = walkSpeed;
-        audioSource = GetComponent<AudioSource>();  
+        audioSource = GetComponent<AudioSource>();
 
     }
 
@@ -52,6 +70,8 @@ public class PlayerController : MonoBehaviour
         if (isDead) return;
 
         currentHealth -= damage;
+
+        UpdateHearts();
 
         if (animator != null)
         {
@@ -115,6 +135,7 @@ public class PlayerController : MonoBehaviour
         {
             isAiming = true;
             animator.SetBool("isAiming", true);
+
             isFired = false;
             animator.SetBool("isFired", false);
         }
@@ -127,11 +148,19 @@ public class PlayerController : MonoBehaviour
         }
 
         // Shooting (Left Click)
-        if (isAiming && Input.GetMouseButtonDown(0) && !isFiring) 
+        if (isAiming && Input.GetMouseButtonDown(0) && !isFiring)
         {
-            Shoot();
-            isFiring = true;
-            animator.SetBool("isFiring", true);
+            if (saltShots > 0)
+            {
+                Shoot();
+                isFiring = true;
+                animator.SetBool("isFiring", true);
+            }
+            else
+            {
+                StartCoroutine(ShowNoBulletMessage());
+            }
+
         }
 
         // Set animation
@@ -185,31 +214,60 @@ public class PlayerController : MonoBehaviour
     }
     void Shoot()
     {
-        animator.SetBool("isFired", true);
-        isFired = true;
-
-        PlayerAudioController.Instance.PlaySound(shotgunSound);
-
-        if (arrow != null && bulletPrefab != null)
+        if (saltShots > 0 && !isFiring)
         {
-            Vector3 fireDirection = arrow.transform.right;
+            animator.SetBool("isFired", true);
+            isFired = true;
 
-            if (transform.localScale.x < 0)
+            PlayerAudioController.Instance.PlaySound(shotgunSound);
+
+            if (arrow != null && bulletPrefab != null)
             {
-                fireDirection = -fireDirection;
+                Vector3 fireDirection = arrow.transform.right;
+
+                if (transform.localScale.x < 0)
+                {
+                    fireDirection = -fireDirection;
+                }
+
+                Vector3 spawnPosition = arrow.transform.position;
+
+                StartCoroutine(SpawnBulletWithDelay(spawnPosition, fireDirection));
             }
 
-            Vector3 spawnPosition = arrow.transform.position;
+            saltShots--;
 
-            StartCoroutine(SpawnBulletWithDelay(spawnPosition, fireDirection));
+            UpdateBulletCount();
+
+            StartCoroutine(ResetFiringState());
         }
+        else
+        {
+            StartCoroutine(ShowNoBulletMessage());
+        }
+    }
+    void UpdateBulletCount()
+    {
+        if (saltShotsText != null)
+        {
+            saltShotsText.text = saltShots.ToString();
+        }
+    }
 
-        StartCoroutine(ResetFiringState());
+    private IEnumerator ShowNoBulletMessage()
+    {
+        if (noBulletText != null)
+        {
+            noBulletText.text = "Insufficient bullets, open more chests.";
+            noBulletText.gameObject.SetActive(true); 
+            yield return new WaitForSeconds(5f); 
+            noBulletText.gameObject.SetActive(false); 
+        }
     }
 
     private IEnumerator SpawnBulletWithDelay(Vector3 spawnPosition, Vector3 fireDirection)
     {
-        yield return new WaitForSeconds(0.2f); 
+        yield return new WaitForSeconds(0.2f);
 
         GameObject bullet = Instantiate(bulletPrefab, spawnPosition, Quaternion.identity);
 
@@ -229,7 +287,7 @@ public class PlayerController : MonoBehaviour
 
     private IEnumerator ResetFiringState()
     {
-        yield return new WaitForSeconds(0.5f); 
+        yield return new WaitForSeconds(0.5f);
 
         isFiring = false;
 
@@ -237,4 +295,23 @@ public class PlayerController : MonoBehaviour
         isFired = false;
         animator.SetBool("isFired", false);
     }
+
+    void UpdateHearts()
+{
+    for (int i = 0; i < heartImages.Length; i++)
+    {
+        heartImages[i].enabled = i < currentHealth;
+    }
+}
+
+    //kill Monster
+    public void AddKill()
+    {
+        killCount++;
+        killCountText.text = "Kills: " + killCount;
+
+    }
+
+
+
 }
