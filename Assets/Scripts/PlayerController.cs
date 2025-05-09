@@ -5,6 +5,7 @@ using static System.Net.Mime.MediaTypeNames;
 using TMPro;
 using System.Diagnostics;
 using UnityEngine.SceneManagement;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
@@ -200,10 +201,52 @@ public class PlayerController : MonoBehaviour
         {
             returnButton.onClick.AddListener(OnReturnButtonClicked);
         }
+        SaveScore(killCount);
+    }
+
+    //private void SaveScore()
+    //{
+    //    PlayerPrefs.SetInt("PlayerScore", killCount);  
+    //    PlayerPrefs.Save();  
+    //}
+
+    private void SaveScore(int score)
+    {
+           // PlayerPrefs.SetInt("RecentScore", killCount);  
+           //PlayerPrefs.Save();  
+
+        string savedScores = PlayerPrefs.GetString("PlayerScores", "");
+        List<int> highScores = new List<int>();
+
+        if (!string.IsNullOrEmpty(savedScores))
+        {
+            string[] scoreStrings = savedScores.Split(',');
+
+            foreach (string scoreStr in scoreStrings)
+            {
+                if (int.TryParse(scoreStr, out int parsedScore))
+                {
+                    highScores.Add(parsedScore); 
+                }
+            }
+        }
+
+        highScores.Add(score);
+        highScores.Sort((a, b) => b.CompareTo(a)); 
+
+        if (highScores.Count > 5) 
+        {
+            highScores.RemoveAt(highScores.Count - 1);
+        }
+
+        string updatedScores = string.Join(",", highScores);
+        PlayerPrefs.SetString("PlayerScores", updatedScores);
+        PlayerPrefs.Save(); 
     }
 
     void OnReturnButtonClicked()
     {
+
         if (!isDead) 
         {
             StopAllCoroutines();
