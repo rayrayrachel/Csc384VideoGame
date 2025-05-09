@@ -63,7 +63,7 @@ public class Interactionontroller : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             isPlayerInRange = false;
-            StartCoroutine(FadeOutInstruction());
+          //  StartCoroutine(FadeOutInstruction());
         }
     }
 

@@ -21,14 +21,12 @@ public class PlayerController : MonoBehaviour
     private bool isFired = false;
     private bool isFiring = false;
 
-
     //Audio
     public AudioClip shotgunSound;
     public AudioClip hitSound;
     public AudioClip deathSound;
     public AudioClip healSound;
 
-    
     private AudioSource audioSource;
 
     //UI
@@ -42,7 +40,6 @@ public class PlayerController : MonoBehaviour
 
     public UnityEngine.UI.Image[] heartImages;
 
-
     //PlayerProfile
     public int damage = 1;
     public int maxHealth = 5;
@@ -52,17 +49,18 @@ public class PlayerController : MonoBehaviour
     //Inventory
     public int saltShots = 10;
     public bool hasRunningShoe = false;
+    public float runningShoeDuration = 5f; 
 
     public GameObject runningShoeText;
     public GameObject runningShoeStar;
-
 
     //Score
     public int killCount = 0;
     public TextMeshProUGUI killCountText;
 
+    // Timer for running shoes
+    private Coroutine runningShoeCoroutine;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         currentHealth = maxHealth;
@@ -70,8 +68,6 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         moveSpeed = walkSpeed;
         audioSource = GetComponent<AudioSource>();
-
-
     }
 
     public void TakeDamage(int damage)
@@ -79,7 +75,6 @@ public class PlayerController : MonoBehaviour
         if (isDead) return;
 
         currentHealth -= damage;
-
         UpdateHearts();
 
         if (animator != null)
@@ -89,7 +84,6 @@ public class PlayerController : MonoBehaviour
             {
                 PlayerAudioController.Instance.PlaySound(hitSound);
             }
-
         }
 
         if (currentHealth <= 0)
@@ -98,7 +92,6 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(Die());
         }
     }
-
 
     public void AddHealth(int heart)
     {
@@ -132,9 +125,16 @@ public class PlayerController : MonoBehaviour
         {
             hasRunningShoe = true;
             walkSpeed = 4f;
+            moveSpeed = walkSpeed;
 
             if (runningShoeText != null) runningShoeText.SetActive(true);
             if (runningShoeStar != null) runningShoeStar.SetActive(true);
+
+            if (runningShoeCoroutine != null)
+            {
+                StopCoroutine(runningShoeCoroutine); 
+            }
+            runningShoeCoroutine = StartCoroutine(RunningShoeDuration());
 
         }
 
@@ -142,6 +142,19 @@ public class PlayerController : MonoBehaviour
         {
             PlayerAudioController.Instance.PlaySound(healSound);
         }
+    }
+
+    private IEnumerator RunningShoeDuration()
+    {
+        yield return new WaitForSeconds(runningShoeDuration); 
+
+        walkSpeed = 2f;
+        moveSpeed = walkSpeed;
+
+        hasRunningShoe = false;
+
+        if (runningShoeText != null) runningShoeText.SetActive(false);
+        if (runningShoeStar != null) runningShoeStar.SetActive(false);
     }
 
     private IEnumerator Die()
@@ -164,11 +177,9 @@ public class PlayerController : MonoBehaviour
             PlayerAudioController.Instance.PlaySound(deathSound);
         }
 
-
         yield return new WaitForSeconds(5f);
     }
 
-    // Update is called once per frame
     void Update()
     {
         moveInputX = Input.GetAxisRaw("Horizontal");
@@ -250,22 +261,17 @@ public class PlayerController : MonoBehaviour
             arrow.transform.rotation = Quaternion.Euler(0, 0, angle);
         }
 
-
-
         // Flip 
         if (moveInputX > 0)
         {
             transform.localScale = new Vector3(1, 1, 1);
         }
-
-
         else if (moveInputX < 0)
         {
             transform.localScale = new Vector3(-1, 1, 1);
-
         }
-
     }
+
     void Shoot()
     {
         if (saltShots > 0 && !isFiring)
@@ -300,6 +306,7 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(ShowNoBulletMessage());
         }
     }
+
     public void UpdateBulletCount()
     {
         if (saltShotsText != null)
@@ -313,9 +320,9 @@ public class PlayerController : MonoBehaviour
         if (noBulletText != null)
         {
             noBulletText.text = "Insufficient bullets, open more chests.";
-            noBulletText.gameObject.SetActive(true); 
-            yield return new WaitForSeconds(5f); 
-            noBulletText.gameObject.SetActive(false); 
+            noBulletText.gameObject.SetActive(true);
+            yield return new WaitForSeconds(5f);
+            noBulletText.gameObject.SetActive(false);
         }
     }
 
@@ -337,8 +344,6 @@ public class PlayerController : MonoBehaviour
         Destroy(bullet, 5f / bulletSpeed);
     }
 
-
-
     private IEnumerator ResetFiringState()
     {
         yield return new WaitForSeconds(0.5f);
@@ -351,21 +356,17 @@ public class PlayerController : MonoBehaviour
     }
 
     void UpdateHearts()
-{
-    for (int i = 0; i < heartImages.Length; i++)
     {
-        heartImages[i].enabled = i < currentHealth;
+        for (int i = 0; i < heartImages.Length; i++)
+        {
+            heartImages[i].enabled = i < currentHealth;
+        }
     }
-}
 
     //kill Monster
     public void AddKill()
     {
         killCount++;
         killCountText.text = "Kills: " + killCount;
-
     }
-
-
-
 }
