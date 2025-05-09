@@ -182,7 +182,7 @@ MonoBehaviour:
   returnButton: {fileID: 1824381978}
   EndScene: {fileID: 1780576663}
   EndSceneText: {fileID: 1900127943}
-  MonsterAmount: 7
+  MonsterAmount: 15
 --- !u!212 &23275398
 SpriteRenderer:
   m_ObjectHideFlags: 0
