@@ -124,11 +124,11 @@ public class ChestTileController : MonoBehaviour
 
         if (player.currentHealth < player.maxHealth)
         {
-            player.TakeDamage(-1);
+            player.AddHealth(1);
         }
         else
         {
-            player.saltShots += 5;
+            player.AddSalt(10);
         }
 
         player.UpdateBulletCount();

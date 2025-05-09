@@ -109,6 +109,16 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void AddSalt(int salt)
+    {
+        saltShots += 10;
+
+        if (healSound != null && PlayerAudioController.Instance != null)
+        {
+            PlayerAudioController.Instance.PlaySound(healSound);
+        }
+    }
+
 
     private IEnumerator Die()
     {
