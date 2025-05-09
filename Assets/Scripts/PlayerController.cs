@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using static System.Net.Mime.MediaTypeNames;
 using TMPro;
 using System.Diagnostics;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -60,6 +61,13 @@ public class PlayerController : MonoBehaviour
 
     // Timer for running shoes
     private Coroutine runningShoeCoroutine;
+
+    // Button 
+
+    public Button returnButton;
+    public GameObject EndScene;
+    public TextMeshProUGUI EndSceneText;
+    public int MonsterAmount = 7;
 
     void Start()
     {
@@ -177,11 +185,38 @@ public class PlayerController : MonoBehaviour
             PlayerAudioController.Instance.PlaySound(deathSound);
         }
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(2f);
+
+        if (EndScene != null) EndScene.SetActive(true);
+        EndScenee();
+
+    }
+
+    
+    void EndScenee()
+    {
+        EndSceneText.text = "SCORE: " + killCount;
+        if (returnButton != null)
+        {
+            returnButton.onClick.AddListener(OnReturnButtonClicked);
+        }
+    }
+
+    void OnReturnButtonClicked()
+    {
+        if (!isDead) 
+        {
+            StopAllCoroutines();
+        }
+        SceneManager.LoadScene("MainMenu");
     }
 
     void Update()
     {
+        if(killCount == MonsterAmount)
+        {
+            StartCoroutine(Die());
+        }
         moveInputX = Input.GetAxisRaw("Horizontal");
         moveInputY = Input.GetAxisRaw("Vertical");
 
