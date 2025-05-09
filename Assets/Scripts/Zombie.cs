@@ -80,7 +80,7 @@ public class Zombie : MonsterController
         }
 
 
-        if (!isMoving && roarSound != null && MonsterAudioController.Instance != null)
+        if (!isMoving && roarSound != null && MonsterAudioController.Instance != null && distance<followRange)
         {
             if (Time.time - lastRoarTime > roarCooldown)
             {

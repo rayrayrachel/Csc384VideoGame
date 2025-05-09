@@ -25,7 +25,9 @@ public class PlayerController : MonoBehaviour
     public AudioClip shotgunSound;
     public AudioClip hitSound;
     public AudioClip deathSound;
+    public AudioClip healSound;
 
+    
     private AudioSource audioSource;
 
     //UI
@@ -43,7 +45,7 @@ public class PlayerController : MonoBehaviour
     //PlayerProfile
     public int damage = 1;
     public int maxHealth = 5;
-    private int currentHealth;
+    public int currentHealth;
     private bool isDead = false;
 
     //Inventory
@@ -89,6 +91,24 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(Die());
         }
     }
+
+
+    public void AddHealth(int heart)
+    {
+        if (currentHealth < maxHealth)
+        {
+            currentHealth += heart; 
+        }
+
+        UpdateHearts();
+
+        animator.SetTrigger("Hurt");
+        if (healSound != null && PlayerAudioController.Instance != null)
+        {
+            PlayerAudioController.Instance.PlaySound(healSound); 
+        }
+    }
+
 
     private IEnumerator Die()
     {
@@ -246,7 +266,7 @@ public class PlayerController : MonoBehaviour
             StartCoroutine(ShowNoBulletMessage());
         }
     }
-    void UpdateBulletCount()
+    public void UpdateBulletCount()
     {
         if (saltShotsText != null)
         {
