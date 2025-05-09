@@ -20,6 +20,10 @@ public class MainMenuController : MonoBehaviour
     public Button closeHighScoreButton;
     private const string HIGH_SCORE_KEY = "PlayerScore";
 
+    public GameObject settingsPanel; 
+    public Button musicToggleButton; 
+    public TextMeshProUGUI musicToggleText;
+
     public void StartGame()
     {
         if (audioSource && clickSound)
@@ -104,6 +108,42 @@ public class MainMenuController : MonoBehaviour
         }
     }
 
+    public void ToggleMusic()
+    {
+        bool isMusicOn = PlayerPrefs.GetInt("MusicOn", 1) == 1;
+
+        isMusicOn = !isMusicOn;
+        PlayerPrefs.SetInt("MusicOn", isMusicOn ? 1 : 0);
+        PlayerPrefs.Save();
+
+        ApplyMusicSetting();
+    }
+
+    void ApplyMusicSetting()
+    {
+        bool isMusicOn = PlayerPrefs.GetInt("MusicOn", 1) == 1;
+
+        if (audioSource != null)
+        {
+            audioSource.mute = !isMusicOn;
+        }
+
+        if (musicToggleText != null)
+        {
+            musicToggleText.text = isMusicOn ? "Music: ON" : "Music: OFF";
+        }
+    }
+
+    public void OpenSettings()
+    {
+        settingsPanel.SetActive(true);
+        ApplyMusicSetting();
+    }
+
+    public void CloseSettings()
+    {
+        settingsPanel.SetActive(false);
+    }
 
 
 
@@ -115,10 +155,7 @@ public class MainMenuController : MonoBehaviour
     //    }
     //}
 
-    public void OpenSettings()
-    {
-        
-    }
+ 
 
     void LoadGameScene()
     {

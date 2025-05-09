@@ -9,7 +9,15 @@ public class BackgroundMusicController : MonoBehaviour
     void Start()
     {
         audioSource = GetComponent<AudioSource>();
-        PlayMusic();
+
+        bool isMusicOn = PlayerPrefs.GetInt("MusicOn", 1) == 1;
+
+        audioSource.mute = !isMusicOn;
+
+        if (isMusicOn)
+        {
+            PlayMusic();
+        }
     }
 
     // Update is called once per frame
