@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      conifers_15_0: 5220273678423451340
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

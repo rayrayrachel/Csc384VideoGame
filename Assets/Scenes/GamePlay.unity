@@ -851,7 +851,7 @@ MonoBehaviour:
   instructionText: {fileID: 531915882}
   backgroundSprite: {fileID: 486439859}
   fadeDuration: 0
-  sceneToLoad: {fileID: 102900000, guid: 0c2239786a5e15b43b506adbcd242ddb, type: 3}
+  sceneName: BattleGround
 --- !u!61 &36777888
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -1026,6 +1026,29 @@ MonoBehaviour:
   walkSpeed: 2
   runSpeed: 6
   shotgunSound: {fileID: 8300000, guid: 44aa3a4e97ee1af40a6b871a2351585f, type: 3}
+  hitSound: {fileID: 0}
+  deathSound: {fileID: 0}
+  healSound: {fileID: 0}
+  arrow: {fileID: 0}
+  bulletPrefab: {fileID: 0}
+  bulletSpeed: 40
+  noBulletText: {fileID: 0}
+  saltShotsText: {fileID: 0}
+  heartImages: []
+  damage: 1
+  maxHealth: 5
+  currentHealth: 0
+  saltShots: 10
+  hasRunningShoe: 0
+  runningShoeDuration: 5
+  runningShoeText: {fileID: 0}
+  runningShoeStar: {fileID: 0}
+  killCount: 0
+  killCountText: {fileID: 0}
+  returnButton: {fileID: 0}
+  EndScene: {fileID: 0}
+  EndSceneText: {fileID: 0}
+  MonsterAmount: 15
 --- !u!50 &60547753
 Rigidbody2D:
   serializedVersion: 5
@@ -1439,7 +1462,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 518, y: 308.26, z: -10}
+  m_LocalPosition: {x: 540, y: 379.76, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5000,7 +5023,7 @@ Transform:
   m_GameObject: {fileID: 1063263308}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 518, y: 308.26, z: -10}
+  m_LocalPosition: {x: 540, y: 379.76, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

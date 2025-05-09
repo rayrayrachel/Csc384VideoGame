@@ -6,9 +6,6 @@ using UnityEngine.UI;
 using static System.Net.Mime.MediaTypeNames;
 using UnityEngine.SceneManagement;
 
-#if UNITY_EDITOR
-using UnityEditor;
-#endif
 
 public class Interactionontroller : MonoBehaviour
 {
@@ -18,21 +15,14 @@ public class Interactionontroller : MonoBehaviour
     public float fadeDuration = 2f;
     private bool isPlayerInRange = false;
 
-    #if UNITY_EDITOR
-    public SceneAsset sceneToLoad; 
-    #endif
-    private string sceneName;
+
+    public string sceneName; 
     private bool isChangingScene = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         SetAlpha(0f);
-
-        #if UNITY_EDITOR
-        if (sceneToLoad != null)
-        sceneName = sceneToLoad.name; 
-        #endif
     }
 
     // Update is called once per frame

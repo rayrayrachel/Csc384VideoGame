@@ -147,7 +147,8 @@ TextureImporter:
     secondaryTextures: []
     spriteCustomMetadata:
       entries: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      sequoia_cedar_0_0: 8500604294717689998
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

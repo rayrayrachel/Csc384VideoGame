@@ -479,7 +479,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1688254345}
         m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
-        m_MethodName: HideHighScoreTable
+        m_MethodName: CloseSettings
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -1153,7 +1153,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 446395958}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 1688254345}
+        m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
+        m_MethodName: OpenSettings
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &446395958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1482,7 +1494,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &503478651
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3621,7 +3633,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1688254345}
         m_TargetAssemblyTypeName: MainMenuController, Assembly-CSharp
-        m_MethodName: HideHighScoreTable
+        m_MethodName: ToggleMusic
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -3843,7 +3855,10 @@ MonoBehaviour:
   - {fileID: 569112375}
   - {fileID: 1240657077}
   - {fileID: 1189386508}
-  closeHighScoreButton: {fileID: 824916829}
+  closeHighScoreButton: {fileID: 123363622}
+  settingsPanel: {fileID: 503478650}
+  musicToggleButton: {fileID: 1544749715}
+  musicToggleText: {fileID: 1210252930}
 --- !u!4 &1688254346
 Transform:
   m_ObjectHideFlags: 0
