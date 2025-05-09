@@ -68,7 +68,7 @@ public class PlayerController : MonoBehaviour
     public Button returnButton;
     public GameObject EndScene;
     public TextMeshProUGUI EndSceneText;
-    public int MonsterAmount = 7;
+    public int MonsterAmount = 15;
 
     void Start()
     {
