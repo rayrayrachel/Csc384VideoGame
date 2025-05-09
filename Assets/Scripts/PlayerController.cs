@@ -3,6 +3,7 @@ using System.Collections;
 using UnityEngine.UI;
 using static System.Net.Mime.MediaTypeNames;
 using TMPro;
+using System.Diagnostics;
 
 public class PlayerController : MonoBehaviour
 {
@@ -50,6 +51,11 @@ public class PlayerController : MonoBehaviour
 
     //Inventory
     public int saltShots = 10;
+    public bool hasRunningShoe = false;
+
+    public GameObject runningShoeText;
+    public GameObject runningShoeStar;
+
 
     //Score
     public int killCount = 0;
@@ -64,6 +70,7 @@ public class PlayerController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         moveSpeed = walkSpeed;
         audioSource = GetComponent<AudioSource>();
+
 
     }
 
@@ -119,6 +126,23 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void AddRunningShoe()
+    {
+        if (!hasRunningShoe)
+        {
+            hasRunningShoe = true;
+            walkSpeed = 4f;
+
+            if (runningShoeText != null) runningShoeText.SetActive(true);
+            if (runningShoeStar != null) runningShoeStar.SetActive(true);
+
+        }
+
+        if (healSound != null && PlayerAudioController.Instance != null)
+        {
+            PlayerAudioController.Instance.PlaySound(healSound);
+        }
+    }
 
     private IEnumerator Die()
     {

@@ -116,7 +116,6 @@ public class ChestTileController : MonoBehaviour
         chestTilemap.SetTile(tilePos, newTile);
 
     }
-
     public void GiveReward()
     {
         PlayerController player = FindObjectOfType<PlayerController>();
@@ -128,13 +127,28 @@ public class ChestTileController : MonoBehaviour
         }
         else
         {
-            player.AddSalt(10);
+            if (!player.hasRunningShoe)
+            {
+                int rand = UnityEngine.Random.Range(0, 2); 
+                if (rand == 0)
+                {
+                    player.AddSalt(10);
+                }
+                else
+                {
+                    player.AddRunningShoe();
+                }
+            }
+            else
+            {
+                player.AddSalt(10);
+            }
         }
 
         player.UpdateBulletCount();
     }
 
-  
+
 
 
     void StartFadeInPrompt()
