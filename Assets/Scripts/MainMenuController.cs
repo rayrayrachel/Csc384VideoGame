@@ -52,14 +52,13 @@ public class MainMenuController : MonoBehaviour
 
         LoadHighScores();
 
-        HighlightLastScore();
+        //HighlightLastScore();
     }
 
     public void HideHighScoreTable()
     {
         highScoreTable.SetActive(false);
     }
-
     void LoadHighScores()
     {
         string savedScores = PlayerPrefs.GetString("PlayerScores", "");
@@ -75,30 +74,46 @@ public class MainMenuController : MonoBehaviour
             }
         }
 
-        highScores.Sort((a, b) => b.CompareTo(a)); 
+        highScores.Sort((a, b) => b.CompareTo(a));
+
+        int recentScore = PlayerPrefs.GetInt("RecentScore", 0); 
+        if (!highScores.Contains(recentScore))
+        {
+            highScores.Add(recentScore); 
+            highScores.Sort((a, b) => b.CompareTo(a)); 
+        }
 
         for (int i = 0; i < highScoreTexts.Length; i++)
         {
             if (i < highScores.Count)
             {
                 highScoreTexts[i].text = "Score " + (i + 1) + ": " + highScores[i];
+                if (highScores[i] == recentScore)
+                {
+                    highScoreTexts[i].color = Color.green; 
+                }
+                else
+                {
+                    highScoreTexts[i].color = Color.white;  
+                }
             }
             else
             {
-                highScoreTexts[i].text = "Score " + (i + 1) + ": 0";
+                highScoreTexts[i].text = "Score " + (i + 1) + ": 0"; 
             }
         }
     }
 
 
 
-    void HighlightLastScore()
-    {
-        if (highScoreTexts.Length > 0)
-        {
-            highScoreTexts[highScoreTexts.Length - 1].color = Color.green;  
-        }
-    }
+
+    //void HighlightLastScore()
+    //{
+    //    if (highScoreTexts.Length > 0)
+    //    {
+    //        highScoreTexts[highScoreTexts.Length - 1].color = Color.green;  
+    //    }
+    //}
 
     public void OpenSettings()
     {

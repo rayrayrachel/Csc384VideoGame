@@ -212,8 +212,10 @@ public class PlayerController : MonoBehaviour
 
     private void SaveScore(int score)
     {
-           // PlayerPrefs.SetInt("RecentScore", killCount);  
-           //PlayerPrefs.Save();  
+        PlayerPrefs.DeleteKey("RecentScore");
+
+        PlayerPrefs.SetInt("RecentScore", score);  
+        PlayerPrefs.Save();
 
         string savedScores = PlayerPrefs.GetString("PlayerScores", "");
         List<int> highScores = new List<int>();
@@ -226,23 +228,24 @@ public class PlayerController : MonoBehaviour
             {
                 if (int.TryParse(scoreStr, out int parsedScore))
                 {
-                    highScores.Add(parsedScore); 
+                    highScores.Add(parsedScore);
                 }
             }
         }
 
-        highScores.Add(score);
+        highScores.Add(score);  
         highScores.Sort((a, b) => b.CompareTo(a)); 
 
-        if (highScores.Count > 5) 
+        if (highScores.Count > 5)
         {
-            highScores.RemoveAt(highScores.Count - 1);
+            highScores.RemoveAt(highScores.Count - 1); 
         }
 
         string updatedScores = string.Join(",", highScores);
         PlayerPrefs.SetString("PlayerScores", updatedScores);
-        PlayerPrefs.Save(); 
+        PlayerPrefs.Save();
     }
+
 
     void OnReturnButtonClicked()
     {
