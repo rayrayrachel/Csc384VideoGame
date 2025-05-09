@@ -574,7 +574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a474a109054664fbc838265c036c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mplayer: {fileID: 0}
+  Mplayer: {fileID: 23275397}
   speed: 1
   health: 1
   followRange: 5
@@ -9453,7 +9453,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a474a109054664fbc838265c036c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mplayer: {fileID: 0}
+  Mplayer: {fileID: 23275397}
   speed: 1
   health: 1
   followRange: 5
@@ -14293,7 +14293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a474a109054664fbc838265c036c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mplayer: {fileID: 0}
+  Mplayer: {fileID: 23275397}
   speed: 1
   health: 1
   followRange: 5
@@ -14849,7 +14849,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a474a109054664fbc838265c036c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mplayer: {fileID: 0}
+  Mplayer: {fileID: 23275397}
   speed: 1
   health: 1
   followRange: 5
@@ -15396,7 +15396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a474a109054664fbc838265c036c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mplayer: {fileID: 0}
+  Mplayer: {fileID: 23275397}
   speed: 1
   health: 1
   followRange: 5
@@ -16274,7 +16274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a474a109054664fbc838265c036c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mplayer: {fileID: 0}
+  Mplayer: {fileID: 23275397}
   speed: 1
   health: 1
   followRange: 5
@@ -18060,7 +18060,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a474a109054664fbc838265c036c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mplayer: {fileID: 0}
+  Mplayer: {fileID: 23275397}
   speed: 1
   health: 1
   followRange: 5
@@ -45262,7 +45262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27a474a109054664fbc838265c036c8e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Mplayer: {fileID: 0}
+  Mplayer: {fileID: 23275397}
   speed: 1
   health: 1
   followRange: 5

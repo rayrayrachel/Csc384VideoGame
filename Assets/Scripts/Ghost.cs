@@ -16,7 +16,7 @@ public class Ghost : MonsterController
     public AudioClip deathSound;
 
     private float lastMoanTime = 0f;
-    private float moanCooldown = 4f;
+    private float moanCooldown = 20f;
 
     protected override void Start()
     {
@@ -66,6 +66,7 @@ public class Ghost : MonsterController
             playerScript?.TakeDamage(1);
         }
 
+
         if (moanSound != null && Time.time - lastMoanTime > moanCooldown)
         {
             MonsterAudioController.Instance?.PlaySound(moanSound);
@@ -85,7 +86,11 @@ public class Ghost : MonsterController
             MonsterAudioController.Instance?.PlaySound(deathSound);
         }
 
-        Mplayer?.AddKill();
+        if (Mplayer != null)
+        {
+            Mplayer.AddKill();
+        }
+
 
         yield return new WaitForSeconds(0.5f);
 
