@@ -32,4 +32,12 @@ public class MonsterAudioController : MonoBehaviour
             audioSource.PlayOneShot(clip);
         }
     }
+
+    public void StopSound(AudioClip clip)
+    {
+        if (audioSource.isPlaying && audioSource.clip == clip)
+        {
+            audioSource.Stop();
+        }
+    }
 }

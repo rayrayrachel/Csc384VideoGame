@@ -81,8 +81,10 @@ public class Ghost : MonsterController
         GetComponent<Collider2D>().enabled = false;
         this.enabled = false;
 
+
         if (deathSound != null)
         {
+            MonsterAudioController.Instance?.StopSound(moanSound);
             MonsterAudioController.Instance?.PlaySound(deathSound);
         }
 
