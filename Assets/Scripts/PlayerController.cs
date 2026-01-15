@@ -111,7 +111,8 @@ public class PlayerController : MonoBehaviour
 
         UpdateHearts();
 
-        animator.SetTrigger("Hurt");
+        animator.SetTrigger("Heal");
+
         if (healSound != null && PlayerAudioController.Instance != null)
         {
             PlayerAudioController.Instance.PlaySound(healSound); 

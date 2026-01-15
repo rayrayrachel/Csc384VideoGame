@@ -48,6 +48,9 @@ TagManager:
   - name: Object
     uniqueID: 2307446847
     locked: 0
+  - name: IgnoreLight
+    uniqueID: 2141455283
+    locked: 0
   - name: Player
     uniqueID: 1756838417
     locked: 0
